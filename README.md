@@ -7,6 +7,7 @@
 <p>Плагин SubscriptCatForum позволяет пользователям подписываться на форумы по категориям и получать уведомления на почту о новых в этих разделах.</p>
 
 <p>&nbsp;</p>
+<img src="https://github.com/webitproff/cot-subscriptcatforum/blob/main/subscriptcatforum.png" alt="SubscriptCatForum" >
 
 <h3>Требования и рекомендации:</h3>
 

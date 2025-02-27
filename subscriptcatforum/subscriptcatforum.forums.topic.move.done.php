@@ -7,7 +7,12 @@ Hooks=forums.topic.move.done
 
 
 defined('COT_CODE') or die('Wrong URL');
-
+// Функция для записи в лог
+function log_to_file($message) {
+    $logfile = __DIR__ . '/subscription_debug.log';  // Путь к файлу лога в папке плагина
+    $date = date('Y-m-d H:i:s');  // Текущая дата с временем
+    file_put_contents($logfile, "[$date] $message\n", FILE_APPEND);  // Записываем в файл
+}
 /**
  * заготовка под https://exapmle.com/index.php?r=subscriptcatforum&run_cron=1
  * ($_GET['run_cron'] == '1')

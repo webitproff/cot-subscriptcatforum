@@ -8,6 +8,7 @@ Hooks=forums.newtopic.newtopic.done
 
 defined('COT_CODE') or die('Wrong URL');
 
+
 // Функция для записи в лог
 function log_to_file($message) {
     $logfile = __DIR__ . '/subscription_debug.log';  // Путь к файлу лога в папке плагина
@@ -21,28 +22,11 @@ $db_users = $db_x . 'users';  // Таблица пользователей
 $db_forum_topics = $db_x . 'forum_topics';  // Таблица тем форума
 $db_forum_posts = $db_x . 'forum_posts';  // Таблица постов форума
 
-
-/**
- * заготовка под https://exapmle.com/index.php?r=subscriptcatforum&run_cron=1
- * ($_GET['run_cron'] == '1')
- * 
- */
-/* 
-// Получаем настройки плагина
-$enable_cron_mail = Cot::$cfg['plugin']['subscriptcatforum']['enable_cron_mail']; // Получаем настройку из конфигурации плагина
-
-// Проверка, если cron включен
-if ($enable_cron_mail == 1) {
-    // Если cron активен, то не отправляем уведомления через хук
-    return;
-} */
-
 log_to_file('Запуск обработки новой темы форума.');
 
 // Получаем данные о категории форума
 $cat_forum_subs = cot_import('s', 'G', 'TXT');  // Категория форума
-$topic_id = cot_import('q', 'G', 'INT'); // Получаем ID темы из GET-параметров
-//Cot::$topic_id = $q; // ID новой темы
+$topic_id = $q; // ID новой темы
 
 log_to_file("Получение данных для темы с ID: $topic_id");
 
@@ -57,11 +41,11 @@ $post_data = Cot::$db->query("SELECT fp_id, fp_postername, fp_text, fp_creation 
 $poster_name = $post_data['fp_postername'];
 $post_id = $post_data['fp_id'];
 $post_text = strip_tags($post_data['fp_text']);  // Убираем HTML-теги из текста поста
-
+//$post_url = cot_url('forums', "m=posts&q=$topic_id&p=" . $post_data['fp_id'], '', true); // Ссылка на последний пост
 $topic_url = cot_url('forums', "m=posts&q=$topic_id", '', true); // Ссылка на тему
 
 $post_url = cot_url('forums', "m=posts&id=" . $post_data['fp_id'] . "&n=last", "#bottom");  // Ссылка на последний пост в теме
-
+//$topic_url = cot_url('forums', 'm=posts&q=' . $topic_id);  // Ссылка на тему
 log_to_file("Последний пост. Автор: $poster_name, текст: $post_text");
 
 // Формируем сообщение для отправки уведомления
@@ -103,3 +87,19 @@ if (!empty($subscribers)) {
 }
 
 log_to_file('Обработка завершена.');
+
+
+/**
+ * заготовка под https://exapmle.com/index.php?r=subscriptcatforum&run_cron=1
+ * ($_GET['run_cron'] == '1')
+ * 
+ */
+/* 
+// Получаем настройки плагина
+$enable_cron_mail = Cot::$cfg['plugin']['subscriptcatforum']['enable_cron_mail']; // Получаем настройку из конфигурации плагина
+
+// Проверка, если cron включен
+if ($enable_cron_mail == 1) {
+    // Если cron активен, то не отправляем уведомления через хук
+    return;
+} */

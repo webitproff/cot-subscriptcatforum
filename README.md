@@ -1,4 +1,4 @@
-````markdown
+
 # SubscriptCatForum Plugin for Cotonti CMF
 
 User subscription to forum category updates
@@ -409,14 +409,14 @@ Notifications are automatically sent when:
 
 All events are recorded in logs, which allows diagnostics to be performed.
 
-**Plugin support topic:**
-[https://abuyfile.com/ru/forums/cotonti/custom/plugs/topic106](https://abuyfile.com/ru/forums/cotonti/custom/plugs/topic106)
 
-**Download the plugin:**
+[**Plugin support topic**](https://abuyfile.com/ru/forums/cotonti/custom/plugs/topic106)
+
+**Download the plugin**
 [https://github.com/webitproff/cot-subscriptcatforum](https://github.com/webitproff/cot-subscriptcatforum)
 
-**More extentions for Cotonti on marketplace:**
-[https://abuyfile.com/en/market/cotonti](https://abuyfile.com/en/market/cotonti)
+
+[**More extentions for Cotonti on marketplace**](https://abuyfile.com/en/market/cotonti)
 
 
 ___
